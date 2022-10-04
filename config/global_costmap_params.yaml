@@ -1,0 +1,7 @@
+global_costmap:
+  global_frame: /map
+  robot_base_frame: /robot1/base_link
+  update_frequency: 3.0
+  # publish_frequency
+  static_map: true
+  transform tolerance: 0.5

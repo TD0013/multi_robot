@@ -1,0 +1,29 @@
+<launch>
+    <arg name="model" default="burger"/>
+    <arg name="tbName" default="123ASD"/>
+    <arg name="x_pos" default="0.0"/>
+    <arg name="y_pos" default="0.0"/>
+    <arg name="z_pos" default="0.0"/>
+    <arg name="robot_name"/>
+    <arg name="init_pose"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model $(arg tbName) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg tbName)_robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="5000.0" />
+      <param name="tf_prefix" value="$(arg tbName)" />
+      <param name="ignore_timestamp" value="true"/>
+    </node>
+
+    <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+      <param name="publish_frequency" type="double" value="5000.0" />
+      <param name="ignore_timestamp" value="true"/>
+    </node> -->
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="3 -1 0 0 0 0 /map /$(arg tbName)/odom 100"/> -->
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="3 -1 0 0 0 0 /map /odom 100"/> -->
+    
+</launch>

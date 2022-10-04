@@ -1,0 +1,46 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <!-- start world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_house.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  <!-- <node name="gazebo" pkg="gazebo" type="gazebo" 
+   args="$(find turtlebot3_gazebo)/worlds/your.world" respawn="false" output="screen" /> -->
+
+  <!-- start gui -->
+  <!-- <node name="gazebo_gui" pkg="gazebo" type="gui" respawn="false" output="screen"/> -->
+  <node pkg="map_server" type="map_server" name="map_broadcaster" args="/home/td0013/house_map.yaml">
+    <param name="frame_id" value="/map" />
+  </node>
+  
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/TD_Rviz.rviz" />
+
+  <!-- include our robots -->
+  <include file="$(find multi_robot)/launch/TD_robots.launch"/>
+  <include file="$(find multi_robot)/launch/TD_one_amcl.launch" >
+      <arg name="tbName" value="robot1"/>
+      <arg name="initial_pose_x"  value="5.0"/>
+      <arg name="initial_pose_y"  value="1.0"/>
+  </include>
+  <include file="$(find multi_robot)/launch/TD_one_amcl.launch" >
+      <arg name="tbName" value="robot2"/>
+      <arg name="initial_pose_x"  value="-3.0"/>
+      <arg name="initial_pose_y"  value="-2.0"/>
+  </include>
+
+  <include file="$(find multi_robot)/launch/TD_move_base.launch">
+    <arg name="tbName" value="robot1"/>
+  </include>
+  <include file="$(find multi_robot)/launch/TD_move_base.launch">
+    <arg name="tbName" value="robot2"/>
+  </include>
+
+  <!-- <include file="$(find multi_robot)/launch/TD_robots.launch"/> -->
+
+</launch>
