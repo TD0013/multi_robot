@@ -1,0 +1,31 @@
+<launch>
+    <arg name="tbName" default="asd"/>
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+
+    <group ns="$(arg tbName)">
+    <param name="tf_prefix" value="$(arg tbName)" />
+    <include file="$(find multi_robot)/launch/TD_one_robot.launch" >
+      <arg name="tbName" value="$(arg tbName)"/>
+      <arg name="x_pos" value="$(arg x)"/>
+      <arg name="y_pos" value="$(arg y)"/>
+      <arg name="z_pos" value="0"/>
+    </include> 
+    </group>
+
+<!-- 
+    <include file="$(find multi_robot)/launch/TD_one_amcl.launch" >
+      <arg name="tbName" value="$(arg tbName)"/>
+      <arg name="initial_pose_x"  value="$(eval 3+arg('x'))"/>
+      <arg name="initial_pose_y"  value="$(eval -1+arg('y'))"/>
+  </include> -->
+
+  <include file="$(find multi_robot)/launch/TD_tb3_move_base.launch">
+    <arg name="tbName" value="$(arg tbName)"/>
+  </include>
+
+  <node name="  roboNode_$(arg tbName)" pkg="multi_robot" type="roboNode.py">
+    <param name="/curr_tbNumber" value="$(arg tbName)"/>
+  </node>
+
+</launch>

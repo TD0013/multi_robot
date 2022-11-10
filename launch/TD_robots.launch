@@ -13,7 +13,6 @@
       <arg name="x_pos" value="2.0"/>
       <arg name="y_pos" value="2.0"/>
       <arg name="z_pos" value="0.0"/>
-      <arg name="robot_name"  value="Robot1" />
     </include> 
   </group>
 
@@ -23,9 +22,8 @@
     <include file="$(find multi_robot)/launch/TD_one_robot.launch" >
       <arg name="tbName" value="robot2"/>
       <arg name="x_pos" value="0.0"/>
-      <arg name="y_pos" value="-1.0"/>
+      <arg name="y_pos" value="0.0"/>
       <arg name="z_pos" value="0.0"/>
-      <arg name="robot_name"  value="Robot2" />
     </include>
     
   </group>
