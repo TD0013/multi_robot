@@ -14,7 +14,7 @@
   <arg name="laser_topic" default="/$(arg tbName)/scan" />
   <arg name="custom_param_file" default="$(find multi_robot)/param/dummy.yaml"/>
 
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base_$(arg tbName)" output="screen">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base_$(arg tbName)"> <!--output="screen"-->
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
     <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_burger.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find turtlebot3_navigation)/param/costmap_common_params_burger.yaml" command="load" ns="local_costmap" />

@@ -19,6 +19,7 @@
     <param name="frame_id" value="/map" />
   </node>
   
+  <node name="centralNode" pkg="multi_robot" type="centralNode.py" output="screen" clear_params="true"/>
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/TD_Rviz.rviz" />
 
 </launch>

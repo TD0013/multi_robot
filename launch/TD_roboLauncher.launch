@@ -13,19 +13,18 @@
     </include> 
     </group>
 
-<!-- 
-    <include file="$(find multi_robot)/launch/TD_one_amcl.launch" >
-      <arg name="tbName" value="$(arg tbName)"/>
-      <arg name="initial_pose_x"  value="$(eval 3+arg('x'))"/>
-      <arg name="initial_pose_y"  value="$(eval -1+arg('y'))"/>
-  </include> -->
+
 
   <include file="$(find multi_robot)/launch/TD_tb3_move_base.launch">
     <arg name="tbName" value="$(arg tbName)"/>
   </include>
+  <!-- <include file="$(find spqrel_navigation)/ros/launch/spqrel_navigation.launch">
+  </include> -->
 
-  <node name="  roboNode_$(arg tbName)" pkg="multi_robot" type="roboNode.py">
-    <param name="/curr_tbNumber" value="$(arg tbName)"/>
-  </node>
+  <group ns="$(arg tbName)">
+    <node name="roboNode" pkg="multi_robot" type="roboNode.py" output="screen" clear_params="true">
+      <param name="mode" value="$(arg tbName)" /> 
+    </node>
+  </group>
 
 </launch>
