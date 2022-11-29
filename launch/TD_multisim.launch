@@ -8,10 +8,10 @@
   <!-- include our robots -->
   <include file="$(find multi_robot)/launch/TD_roboLauncher.launch">
       <arg name="tbName" value="robot1"/>
-      <arg name="x"  value="2.0"/>
-      <arg name="y"  value="2.0"/>
+      <arg name="x"  value="3.0"/>
+      <arg name="y"  value="3.0"/>
   </include>
-  <!-- <include file="$(find multi_robot)/launch/TD_roboLauncher.launch" >
+  <include file="$(find multi_robot)/launch/TD_roboLauncher.launch" >
       <arg name="tbName" value="robot2"/>
       <arg name="x"  value="-6.0"/>
       <arg name="y"  value="-1.0"/>
@@ -25,7 +25,7 @@
       <arg name="tbName" value="robot4"/>
       <arg name="x"  value="3.0"/>
       <arg name="y"  value="2.0"/>
-  </include> -->
+  </include>
 
   <!-- <include file="$(find multi_robot)/launch/TD_robots.launch"/> -->
   

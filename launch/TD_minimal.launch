@@ -6,7 +6,7 @@
     <arg name="world_name" value="$(find multi_robot)/worlds/turtlebot3_house.world"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
+    <arg name="gui" value="false"/>
     <arg name="headless" value="false"/>
     <arg name="debug" value="false"/>
   </include>
@@ -16,10 +16,10 @@
   <!-- start gui -->
   <!-- <node name="gazebo_gui" pkg="gazebo" type="gui" respawn="false" output="screen"/> -->
   <node pkg="map_server" type="map_server" name="map_broadcaster" args="$(find multi_robot)/map/house_map.yaml">
-    <param name="frame_id" value="/map" />
+    <param name="frame_id" value="map" />
   </node>
   
-  <node name="centralNode" pkg="multi_robot" type="centralNode.py" output="screen" clear_params="true"/>
+  <!-- <node name="centralNode" pkg="multi_robot" type="centralNode.py" output="screen" clear_params="true"/> -->
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/temp2.rviz" />
 
 </launch>
