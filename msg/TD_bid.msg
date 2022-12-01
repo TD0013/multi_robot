@@ -1,0 +1,2 @@
+string robotName
+float64 bidValue
