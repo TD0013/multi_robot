@@ -4,9 +4,20 @@ import roslaunch
 import rospy
 import rospkg
 
+rospack = rospkg.RosPack()
 rospy.init_node('roboLaunchNode')
 
-rospack = rospkg.RosPack()
+
+uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+roslaunch.configure_logging(uuid)
+
+cli_args1 = ['multi_robot', 'hospitalMinimal.launch']
+
+roslaunch_file1 = roslaunch.rlutil.resolve_launch_arguments(cli_args1)
+
+launch_files = [roslaunch_file1]
+roslaunch.parent.ROSLaunchParent(uuid, launch_files[0]).start()
+
 
 PATH = rospack.get_path('multi_robot')
 # print(PATH)
@@ -33,23 +44,17 @@ def rviz_write(z):
     w.writelines(temp)
     read.close()
     w.close()  
-
-
-z = 2
-rviz_write(z)
+print("Done")
 rospy.sleep(1)
 
-uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
-roslaunch.configure_logging(uuid)
+noOfRobots=rospy.get_param('td/numberofrobots')
 
-cli_args1 = ['multi_robot', 'TD_minimal.launch']
-
-roslaunch_file1 = roslaunch.rlutil.resolve_launch_arguments(cli_args1)
-
-launch_files = [roslaunch_file1]
+# rviz_write(z)
+rospy.sleep(1)
 
 
-for i in range(1,z+1):
+
+for i in range(1,noOfRobots+1):
     cli_args2 = [PATH+'/launch/TD_roboLauncher.launch', 'tbName:=robot'+str(i), 'x:='+str(-4), 'y:='+str(i*0.5+1)]
     print(cli_args2)
     roslaunch_file2 = roslaunch.rlutil.resolve_launch_arguments(cli_args2)[0]
@@ -57,7 +62,7 @@ for i in range(1,z+1):
     launch_files.append([(roslaunch_file2, roslaunch_args2)])
 
 parent = {}
-for id, val in enumerate(launch_files):
+for id, val in enumerate(launch_files[1:]):
     print(val)
     parent[id] = roslaunch.parent.ROSLaunchParent(uuid, val)
 

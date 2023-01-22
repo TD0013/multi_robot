@@ -14,15 +14,27 @@
     </group>
 
 
-
-  <include file="$(find multi_robot)/launch/TD_tb3_move_base.launch">
+  <!-- Perfectly working static planner-->
+  <!-- <include file="$(find multi_robot)/launch/TD_tb3_move_base.launch">
     <arg name="tbName" value="$(arg tbName)"/>
-  </include>
-  <!-- <include file="$(find spqrel_navigation)/ros/launch/spqrel_navigation.launch">
   </include> -->
 
-  <group ns="$(arg tbName)">
+
+
+  <include file="$(find multi_robot)/launch/TD_move_base.launch">
+    <arg name="tbName" value="$(arg tbName)"/>
+  </include>
+
+ 
+
+  <!-- <group ns="$(arg tbName)">
     <node name="roboNode" pkg="multi_robot" type="decent_SITMASR.py" output="screen" clear_params="true">
+      <param name="mode" value="$(arg tbName)" /> 
+    </node>
+  </group> -->
+
+  <group ns="$(arg tbName)">
+    <node name="roboNode" pkg="multi_robot" type="roboNode.py" output="screen" clear_params="true">
       <param name="mode" value="$(arg tbName)" /> 
     </node>
   </group>

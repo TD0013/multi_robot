@@ -24,7 +24,6 @@ class RobotNode:
 
     def __init__(self):
         rospy.sleep(3)
-        print("asdfdsdgfhgjfhkgfdjgshfasgdhdfhg")
         self.Status=actionlib_msgs.msg.GoalStatus()
         self.Status.text="robot"+str(tbNumber)
         self.Status.status=3
@@ -47,10 +46,7 @@ if __name__ == '__main__':
     
     rospy.init_node('roboNode')
     tbNumber = int(rospy.get_param('roboNode/mode')[-1])
-    
-    tbProp = rospy.get_param('/td/robot'+str(tbNumber))
-    print("robot"+str(tbNumber), tbProp) 
-    
+    # print()
 
     # while not rospy.is_shutdown():
         # print(tbNumber)

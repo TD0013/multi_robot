@@ -1,0 +1,10 @@
+#Namespacing as TD to avoid conflicts in params
+
+# robots can have 4 properties. Hence a robot with no properties is represented as 0000 and with all is 1111. robot with only second property is 0100
+# robotName: property1 property2, property3, property4 {without space}
+
+td: {
+  numberofrobots: 2,
+ robot1: 1101,
+ robot2: 1110,
+}

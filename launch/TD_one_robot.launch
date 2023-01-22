@@ -1,6 +1,6 @@
 <launch>
     <arg name="model" default="burger"/>
-    <arg name="tbName" default="123ASD"/>
+    <arg name="tbName" default="ASD"/>
     <arg name="x_pos" default="0.0"/>
     <arg name="y_pos" default="0.0"/>
     <arg name="z_pos" default="0.0"/>
@@ -20,8 +20,10 @@
       <param name="publish_frequency" type="double" value="5000.0" />
       <param name="ignore_timestamp" value="true"/>
     </node> -->
+    <!-- FOR HOUSE -->>
+    <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg tbName)/odom 100"/>
 
-    <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="3 -1 0 0 0 0 /map /$(arg tbName)/odom 100"/>
+    <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg tbName)/odom 100"/> -->
 
     <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="3 -1 0 0 0 0 /map /odom 100"/> -->
     
