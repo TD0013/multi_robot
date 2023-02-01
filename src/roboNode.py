@@ -24,7 +24,7 @@ class RobotNode:
 
     def __init__(self):
         rospy.sleep(3)
-        print("asdfdsdgfhgjfhkgfdjgshfasgdhdfhg")
+        # print("asdfdsdgfhgjfhkgfdjgshfasgdhdfhg")
         self.Status=actionlib_msgs.msg.GoalStatus()
         self.Status.text="robot"+str(tbNumber)
         self.Status.status=3
