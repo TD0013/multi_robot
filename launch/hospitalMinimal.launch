@@ -5,6 +5,7 @@
   
   <!-- start world -->
   <include file="$(find aws_robomaker_hospital_world)/launch/hospital.launch">
+    <arg name="output" default="log"/>
     <arg name="gui" default="false"/>
   </include>
   <!-- <node name="gazebo" pkg="gazebo" type="gazebo" 

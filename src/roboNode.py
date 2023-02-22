@@ -48,8 +48,10 @@ if __name__ == '__main__':
     rospy.init_node('roboNode')
     tbNumber = int(rospy.get_param('roboNode/mode')[-1])
     
-    tbProp = rospy.get_param('/td/robot'+str(tbNumber))
-    print("robot"+str(tbNumber), tbProp) 
+    tbProp = rospy.get_param('/td/robot'+str(tbNumber)+"/prop")
+    tbCapacity = rospy.get_param('/td/robot'+str(tbNumber)+"/capacity")
+
+    print("robot"+str(tbNumber), tbProp, tbCapacity) 
     
 
     # while not rospy.is_shutdown():

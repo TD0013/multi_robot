@@ -33,10 +33,20 @@
     </node>
   </group> -->
 
-  <group ns="$(arg tbName)">
+  <!-- <group ns="$(arg tbName)">
     <node name="roboNode" pkg="multi_robot" type="roboNode.py" output="screen" clear_params="true">
       <param name="mode" value="$(arg tbName)" /> 
     </node>
+  </group> -->
+  
+  <group ns="$(arg tbName)">
+    <node name="roboNode" pkg="multi_robot" type="roboNode_STN.py" output="screen" clear_params="true">
+      <param name="name" value="$(arg tbName)" /> 
+    </node>
+    <node name="auctionerNode" pkg="multi_robot" type="auctionerNode.py" output="screen" clear_params="true">
+      <param name="name" value="$(arg tbName)" /> 
+    </node>
   </group>
+  
 
 </launch>

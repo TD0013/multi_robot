@@ -43,9 +43,12 @@
     <param name="global_costmap/laser_scan_sensor/sensor_frame" value="$(arg tbName)/base_scan" /> 
     <param name="local_costmap/laser_scan_sensor/sensor_frame" value="$(arg tbName)/base_scan" /> 
 
-    <rosparam file="$(find multi_robot)/param/dwa_local_planner_params.yaml" command="load" />
+    <!-- <rosparam file="$(find multi_robot)/param/dwa_local_planner_params.yaml" command="load" /> -->
     <rosparam file="$(find multi_robot)/param/move_base_params.yaml" command="load" />
-    <rosparam file="$(find multi_robot)/param/global_planner_params.yaml" command="load" />
+
+    <!-- <rosparam file="$(find multi_robot)/param/global_planner_params.yaml" command="load" /> -->
+    <rosparam file="$(find multi_robot)/param/teb_local_planner_params.yaml" command="load" />
+    
     <rosparam file="$(find multi_robot)/param/navfn_global_planner_params.yaml" command="load" /> 
 
     <!-- external params file that could be loaded into the move_base namespace -->

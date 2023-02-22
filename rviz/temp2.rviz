@@ -9,11 +9,7 @@ Panels:
         - /RobotModel1
         - /Path1
         - /Path2
-        - /Map2
-        - /Map3
         - /LaserScan1
-        - /Path6
-        - /Path7
       Splitter Ratio: 0.5029411911964417
     Tree Height: 380
   - Class: rviz/Selection
@@ -114,8 +110,8 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: robot1/robot_description
-      TF Prefix: robot1
+      Robot Description: r11/robot_description
+      TF Prefix: r11
       Update Interval: 0.30000001192092896
       Value: true
       Visual Enabled: true
@@ -140,7 +136,7 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base_robot1/TebLocalPlannerROS/global_plan
+      Topic: /move_base_r11/TebLocalPlannerROS/global_plan
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -187,8 +183,8 @@ Visualization Manager:
           Show Trail: false
           Value: true
       Name: RobotModel
-      Robot Description: robot2/robot_description
-      TF Prefix: robot2
+      Robot Description: r21/robot_description
+      TF Prefix: r21
       Update Interval: 0.30000001192092896
       Value: true
       Visual Enabled: true
@@ -213,7 +209,7 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base_robot2/TebLocalPlannerROS/global_plan
+      Topic: /move_base_r21/TebLocalPlannerROS/global_plan
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -389,7 +385,7 @@ Visualization Manager:
       Draw Behind: true
       Enabled: true
       Name: Map
-      Topic: /move_base_robot1/local_costmap/costmap
+      Topic: /map
       Unreliable: false
       Use Timestamp: false
       Value: true
@@ -489,7 +485,7 @@ Visualization Manager:
       X std deviation: 0.5
       Y std deviation: 0.5
     - Class: rviz/SetGoal
-      Topic: /robot1/move_base_simple/goal
+      Topic: /r11/move_base_simple/goal
     - Class: rviz/PublishPoint
       Single click: true
       Topic: /clicked_point
@@ -497,7 +493,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.437950134277344
+      Distance: 50.503265380859375
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -505,9 +501,9 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.24244220554828644
-        Y: 1.4119913578033447
-        Z: 0.4129728674888611
+        X: -4.4764251708984375
+        Y: 0.6117497086524963
+        Z: 0.4176998436450958
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false

@@ -5,17 +5,19 @@
   <!-- <include file="$(find multi_robot)/launch/TD_minimal.launch"/> -->
   <include file="$(find multi_robot)/launch/hospitalMinimal.launch"/>
     
+  <rosparam file="$(find multi_robot)/param/SIMULATION.yaml" command="load" />
 
   <!-- include our robots -->
   <include file="$(find multi_robot)/launch/TD_roboLauncher.launch">
-      <arg name="tbName" value="robot1"/>
-      <arg name="x"  value="3.0"/>
-      <arg name="y"  value="1.0"/>
+      <arg name="tbName" value="r11"/>
+      <arg name="x"  value="0"/>
+      <arg name="y"  value="1.5"/>
   </include>
+
   <include file="$(find multi_robot)/launch/TD_roboLauncher.launch" >
-      <arg name="tbName" value="robot2"/>
-      <arg name="x"  value="2.0"/>
-      <arg name="y"  value="-1.0"/>
+      <arg name="tbName" value="r21"/>
+      <arg name="x"  value="0"/>
+      <arg name="y"  value="-14.5"/>
   </include>
   <!-- <include file="$(find multi_robot)/launch/TD_roboLauncher.launch" >
       <arg name="tbName" value="robot3"/>
@@ -29,6 +31,8 @@
   </include> -->
 
   <!-- <include file="$(find multi_robot)/launch/TD_robots.launch"/> -->
+
+  <!-- <node name="taskGen" pkg="multi_robot" type="taskGenerator.py" output="screen"/> -->
   
 
 </launch>
