@@ -1,0 +1,21 @@
+td: {
+  task_count: 10,
+  r1: {
+    start: "dock_2",
+    mass: 60,
+    attribute: "111",
+    capacity: 400,
+    energy: 40000,
+    velocity: 1,
+    BUFFER: 4
+  },
+  r2: {
+    start: "dock_3",
+    mass: 150,
+    attribute: "001",
+    capacity: 1000,
+    energy: 40000,
+    velocity: 0.5,
+    BUFFER: 4
+  }
+}
