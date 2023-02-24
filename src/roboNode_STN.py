@@ -253,6 +253,7 @@ def taskAssign(data):
         plannedPath = list()
         for i in retList:
             plannedPath.append([i[0], i[2]])
+        print(robotID, assigendTasks)
 
     doTask()
 
