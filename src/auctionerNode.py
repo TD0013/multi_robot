@@ -16,7 +16,7 @@ def auction():
     bestBid.penalty = 10e9
     bestBid.robotName = ""
     bestBid.time = 10e9
-    bestBid.eff = 10
+    bestBid.eff = 0
     bestBid.taskID = newAuction.taskID
     
     auctionPub.publish(newAuction)
@@ -33,11 +33,8 @@ def auction():
         bidWinner = multi_robot.msg.TD_STN_assignTask()
         bidWinner.robotName = bestBid.robotName
         bidWinner.task = newAuction
-        # print(bidWinner.robotName)
+        print(bidWinner.robotName)
         taskAssign.publish(bidWinner)
-
-
-
 
 def bidCallback(data):
     global bestBid
@@ -49,8 +46,9 @@ def bidCallback(data):
             if(data.eff>bestBid.eff):
                 bestBid = data
             elif(data.eff==bestBid.eff):
-                if(data.time < bestBid.time):       # better time wins amongst slow robots
+                if(data.time < bestBid.time):       # better time wins amongst less efficient
                     bestBid = data
+
 
 
 def newTask_cb(data):

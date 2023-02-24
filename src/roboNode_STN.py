@@ -8,11 +8,11 @@ import numpy as np
 import yaml
 
 
-with open("/home/td0013/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
+with open("/home/alpha3/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
     points= yaml.safe_load(file1)
     points = points["world_nodes"]
 
-dist= np.loadtxt('/home/td0013/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
+dist= np.loadtxt('/home/alpha3/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
 dist = np.round(dist, decimals=3)
 places = {}
 z=0
@@ -194,7 +194,7 @@ def statusCallback(data):
 
             else:                                       #Task completed
                 if(rospy.Time.now().to_sec() > thisTask.finishTime):        # add penalty (if any)
-                    totalPen+=totalPen+ 10e9 if thisTask.timeconstraint==1 else rospy.Time.now().to_sec() - thisTask.finishTime
+                    totalPen+=totalPen+ 10e9 if thisTask.timeconstraint==0 else rospy.Time.now().to_sec() - thisTask.finishTime
 
                 # print(thisTask, totalPen)
                 currCarr = currCarr-thisTask.demand

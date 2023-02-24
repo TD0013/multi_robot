@@ -8,11 +8,11 @@ import numpy as np
 MIN_VEL = 0.5
 
 
-with open("/home/td0013/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
+with open("/home/alpha3/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
     points= yaml.safe_load(file1)
     points = points["world_nodes"]
 
-dist= np.loadtxt('/home/td0013/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
+dist= np.loadtxt('/home/alpha3/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
 dist = np.round(dist, decimals=3)
 
 places = {}
@@ -38,13 +38,13 @@ if __name__ == '__main__':
             task.taskID= step
             task.arrivalTime = int(rospy.Time.now().to_sec())
             task.demand = randint(20, 100)
-            task.destination = choice(list(points.keys()))
             
             task.pickup = choice(list(points.keys()))
 
             while task.pickup in ["dock_1", "dock_2", "dock_3"]:
                 task.pickup = choice(list(points.keys()))
 
+            task.destination = choice(list(points.keys()))
             while task.destination in ["dock_1", "dock_2", "dock_3", task.pickup]:
                 task.destination = choice(list(points.keys()))
             task.startTime = task.arrivalTime+randint(0,10)
