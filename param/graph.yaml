@@ -4,18 +4,27 @@ td: {
     start: "dock_2",
     mass: 60,
     attribute: "111",
-    capacity: 400,
+    capacity: 40,
     energy: 40000,
-    velocity: 1,
-    BUFFER: 4
+    velocity: 0.5,
+    BUFFER: 2
   },
   r2: {
     start: "dock_3",
     mass: 150,
     attribute: "001",
+    capacity: 40,
+    energy: 4000,
+    velocity: 1,
+    BUFFER: 2
+  },
+    r3: {
+    start: "dock_2",
+    mass: 150,
+    attribute: "110",
     capacity: 1000,
     energy: 40000,
-    velocity: 0.5,
+    velocity: 0.75,
     BUFFER: 4
   }
 }
