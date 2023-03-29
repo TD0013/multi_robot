@@ -6,13 +6,15 @@ import nav_msgs.msg
 import multi_robot.msg
 import numpy as np
 import yaml
+import rospkg
 
-
-with open("/home/alpha3/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
+rospack = rospkg.RosPack()
+PATH = rospack.get_path('multi_robot')
+with open(PATH+"/param/distance_params.yaml", 'r') as file1:
     points= yaml.safe_load(file1)
     points = points["world_nodes"]
 
-dist= np.loadtxt('/home/alpha3/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
+dist= np.loadtxt(PATH+'/param/dist.txt', usecols=range(22))
 dist = np.round(dist, decimals=3)
 places = {}
 z=0

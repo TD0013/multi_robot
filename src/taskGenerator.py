@@ -3,16 +3,23 @@ import rospy
 from multi_robot.msg import TD_task
 from random import randint, choice
 import yaml
+import rospkg
 import numpy as np
 
 MIN_VEL = 0.5
+TASKS_TO_GENERATE = 5
 
+rospy.init_node('taskGen')                     # init ROS node
 
-with open("/home/alpha3/catkin_ws/src/multi_robot/param/distance_params.yaml", 'r') as file1:
+# Get Path for multi_robot Pkg and declare global variabel PARAMS    
+rospack = rospkg.RosPack()
+PATH = rospack.get_path('multi_robot')
+
+with open(PATH+"/param/distance_params.yaml", 'r') as file1:
     points= yaml.safe_load(file1)
     points = points["world_nodes"]
 
-dist= np.loadtxt('/home/alpha3/catkin_ws/src/multi_robot/param/dist.txt', usecols=range(22))
+dist= np.loadtxt(PATH+'/param/dist.txt', usecols=range(22))
 dist = np.round(dist, decimals=3)
 
 places = {}
@@ -22,10 +29,6 @@ for i in points:
     z+=1
 
 if __name__ == '__main__':
-    
-    rospy.init_node('taskGen')                     # init ROS node
-    count = rospy.get_param('/td/task_count')
-
     #Init publisher
     taskPub = rospy.Publisher('/task', TD_task, queue_size=1)
 
@@ -33,7 +36,7 @@ if __name__ == '__main__':
 
     rospy.sleep(1)
 
-    while not rospy.is_shutdown() and step<count:
+    while not rospy.is_shutdown() and step<TASKS_TO_GENERATE:
             task = TD_task()
             task.taskID= step
             task.arrivalTime = int(rospy.Time.now().to_sec())

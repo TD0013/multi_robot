@@ -4,11 +4,11 @@ import multi_robot.msg
 
 AUCTION_TIME = 2
 
+
 def auction():
     global tasksToAuction
     global bestBid
     global rejectionCount
-    
 
     newAuction = tasksToAuction.pop(0)
 
@@ -53,17 +53,26 @@ def bidCallback(data):
 
 def newTask_cb(data):
     global tasksToAuction
+    global aucID
+    global aucCount
 
-    # TODO: improve this
-    # if(1):
-    if (data.taskID)%2==(int(robotID[1])%2):
+    if (data.taskID)%aucCount==aucID:
+        print("Auctioner is "+str(aucID))
         tasksToAuction.append(data)
 
 if __name__ == '__main__':
     
     rospy.init_node('auctioner')                        # init ROS Node
-    robotID = rospy.get_param('auctionerNode/name')     # get which robot this node if for
+    robotID = rospy.get_param('auctionerNode/name')     # get which robot this node is for
     rospy.loginfo_once(robotID)
+
+    
+    try:
+        aucID = rospy.get_param("/td/aucID/"+robotID)
+    except:
+        aucID = -1
+
+    aucCount = rospy.get_param('/td/auctioner_count')
 
     # init Subscribers and Publishers
     tasksToAuction = list()

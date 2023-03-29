@@ -4,27 +4,27 @@
 # robotName: property1 property2, property3, property4 {without space}
 
 td: {
-  task_count: 9,
+  types: ["r1", "r2"],
   r1: {
+    count: 2,
     start: "dock_2",
     mass: 60,
     attribute: "1011",
     capacity: 400,
     energy: 40000,
     velocity: 1,
-    BUFFER: 4
+    BUFFER: 4,
+    isAuctioner: 1,
   },
   r2: {
+    count: 0,
     start: "dock_3",
     mass: 150,
     attribute: "1100",
     capacity: 1000,
     energy: 40000,
     velocity: 0.5,
-    BUFFER: 4
+    BUFFER: 4,
+    isAuctioner: 0,
   }
 }
-# Velocities of Robots
-
-# /move_base_r1_robot1/TebLocalPlannerROS/max_vel_x: 0.5
-# /move_base_r2_robot1/TebLocalPlannerROS/max_vel_x: 0.1
