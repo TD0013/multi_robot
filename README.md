@@ -2,6 +2,10 @@
 
 This repo contains the a framework for multi-robot simulation on ubuntu using ROS noetic and gazebo.
 
+## Table of Contents
+  * [Installation](#installation)
+
+
 ## Installation 
 Pre-requisites include ROS Noetic, <Turtlebot3> and <Aws warehouse>.
 
@@ -14,3 +18,5 @@ cd ..
 catkin_make
 ```
 This sould successfully build the repo on your local device.
+
+
