@@ -6,7 +6,7 @@
 td: {
   types: ["r1", "r2"],
   r1: {
-    count: 2,
+    count: 1,
     start: "dock_2",
     mass: 60,
     attribute: "1011",

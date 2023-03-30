@@ -1,4 +1,7 @@
 <launch>
+  <!-- The file for spawning the robot in the environment -->
+
+    <!-- Default arguments -->
     <arg name="model" default="burger"/>
     <arg name="tbName" default="ASD"/>
     <arg name="x_pos" default="0.0"/>
@@ -6,25 +9,20 @@
     <arg name="z_pos" default="0.0"/>
     <arg name="init_pose"/>
 
+    <!-- load the description of the robot (structural and sensor info) -->
     <param name="robot_description" command="$(find xacro)/xacro $(find multi_robot)/urdf/turtlebot3_$(arg model).urdf.xacro" />
 
+    <!-- Actually spawn the robot -->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model $(arg tbName) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 
+    <!-- Start the node that publishes the live information of the robot (live joint information) -->
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg tbName)_robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="5000.0" />
       <param name="tf_prefix" value="$(arg tbName)" />
       <param name="ignore_timestamp" value="true"/>
     </node>
 
-    <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
-      <param name="publish_frequency" type="double" value="5000.0" />
-      <param name="ignore_timestamp" value="true"/>
-    </node> -->
-    <!-- FOR HOUSE -->
+    <!-- let the robot know where it is relative to the map -->
     <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg tbName)/odom 100"/>
-
-    <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="0 0 0 0 0 0 /map /$(arg tbName)/odom 100"/> -->
-
-    <!-- <node pkg="tf" type="static_transform_publisher" name="world_tf_broadcaster"  args="3 -1 0 0 0 0 /map /odom 100"/> -->
     
 </launch>

@@ -7,14 +7,15 @@
   
   <!-- start world -->
   <include file="$(find aws_robomaker_hospital_world)/launch/hospital.launch">
-    <arg name="gui" default="false"/>
+    <arg name="gui" default="false"/> <!-- switch to true if you want to view gazebo and rviz, false for only rviz-->
   </include>
 
-  <!-- start gui -->
+  <!-- start map node -->
   <node pkg="map_server" type="map_server" name="map_broadcaster" args="$(find multi_robot)/map/hospital_map.yaml">
     <param name="frame_id" value="map" />
   </node>
 
+  <!--Start the rviz with the file we just made in the driver code-->
   <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/temp2.rviz" />
 
 </launch>

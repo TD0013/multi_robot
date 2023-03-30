@@ -1,10 +1,18 @@
 <launch>
+
+  <!-- This is the launch file for launching one robot in the environment-->
+  <!-- This includes spawning, starting robot's move_base pkg for control, robot's logic controller, and robot's auctioner node (it may or may not be used post starting) -->
+
+    <!-- Default spawning arguments -->
     <arg name="tbName" default="asd"/>
     <arg name="x" default="0.0"/>
     <arg name="y" default="0.0"/>
 
+    <!-- Name Spaced for avoiding conflicts with other parameters of different robots -->
     <group ns="$(arg tbName)">
     <param name="tf_prefix" value="$(arg tbName)" />
+
+    <!-- Spawn the robot -->
     <include file="$(find multi_robot)/launch/TD_one_robot.launch" >
       <arg name="tbName" value="$(arg tbName)"/>
       <arg name="x_pos" value="$(arg x)"/>
@@ -13,36 +21,21 @@
     </include> 
     </group>
 
-
-  <!-- Perfectly working static planner-->
-  <!-- <include file="$(find multi_robot)/launch/TD_tb3_move_base.launch">
-    <arg name="tbName" value="$(arg tbName)"/>
-  </include> -->
-
-
-
+  <!-- Start the move base controller for the robot -->
   <include file="$(find multi_robot)/launch/TD_move_base.launch">
     <arg name="tbName" value="$(arg tbName)"/>
   </include>
 
- 
+  <!-- Essentiall, these 2 nodes simulate the "On board computer" for the robot-->
 
-  <!-- <group ns="$(arg tbName)">
-    <node name="roboNode" pkg="multi_robot" type="decent_SITMASR.py" output="screen" clear_params="true">
-      <param name="mode" value="$(arg tbName)" /> 
-    </node>
-  </group> -->
-
-  <!-- <group ns="$(arg tbName)">
-    <node name="roboNode" pkg="multi_robot" type="roboNode.py" output="screen" clear_params="true">
-      <param name="mode" value="$(arg tbName)" /> 
-    </node>
-  </group> -->
-  
   <group ns="$(arg tbName)">
+    <!-- The node for the decision making of the robot. Enables the robot to participate communicate with other robots and send goals to move_base for traversal-->
     <node name="roboNode" pkg="multi_robot" type="roboNode_STN.py" output="screen" clear_params="true">
       <param name="name" value="$(arg tbName)" /> 
     </node>
+
+    <!-- The node acting as a acutioner process of a robot-->
+    <!-- It is initialized, even if the robot cannot be an auctioner, but that is handeled in the logic of the auctioner code -->
     <node name="auctionerNode" pkg="multi_robot" type="auctionerNode.py" output="screen" clear_params="true">
       <param name="name" value="$(arg tbName)" /> 
     </node>
