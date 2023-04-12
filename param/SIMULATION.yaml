@@ -17,7 +17,7 @@ td: {
     isAuctioner: 1,
   },
   r2: {
-    count: 0,
+    count: 1,
     start: "dock_3",
     mass: 150,
     attribute: "1100",

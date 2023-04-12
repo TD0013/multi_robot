@@ -16,6 +16,6 @@
   </node>
 
   <!--Start the rviz with the file we just made in the driver code-->
-  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/temp2.rviz" />
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find multi_robot)/rviz/TD_rviz.rviz" />
 
 </launch>

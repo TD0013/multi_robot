@@ -18,11 +18,12 @@ with open(PATH+"/param/SIMULATION.yaml") as fp:
 with open(PATH+"/param/distance_params.yaml") as fp:
     DIST = yaml.full_load(fp)["world_nodes"]
 
-# The function to write the vizualization file as per out current simulation
+# The function to write the vizualization file as per out current simulation 
+# (rviz is needed for visualization, but doesn't accept runtime arguments. This is a good workaround)
 def rviz_write():
     # Part 1: Write a non changing piece for an rviz file
     read = open(PATH+"/rviz/part1", "r")
-    w = open(PATH+"/rviz/temp2.rviz","w")
+    w = open(PATH+"/rviz/TD_rviz.rviz","w")
     temp = read.readlines()
 
     w.writelines(temp)
@@ -49,11 +50,12 @@ def rviz_write():
 
 
 def main():
-    global PARAMS
-
     # Start an instance of ROSLAUNCH API 
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
+
+    rviz_write() #Generate the appropriate rviz file per the SIMULATION.yaml file
+    rospy.sleep(1)
 
     # roslaunch hospitalMinimal.launch
     ## this starts our barebone environment and initilizes a list which stores all files we need to launch
@@ -61,9 +63,6 @@ def main():
     roslaunch_file1 = roslaunch.rlutil.resolve_launch_arguments(cli_args1)
     launch_files = [roslaunch_file1]
     roslaunch.parent.ROSLaunchParent(uuid, launch_files[0]).start()
-
-    rviz_write() #Generate the appropriate rviz file per the SIMULATION.yaml file
-    rospy.sleep(1)
 
     AUC_ID = 0 # We will use this to assign unique auctioner IDs to robots that are able to become an auctioner
 

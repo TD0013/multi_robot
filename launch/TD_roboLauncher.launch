@@ -4,7 +4,7 @@
   <!-- This includes spawning, starting robot's move_base pkg for control, robot's logic controller, and robot's auctioner node (it may or may not be used post starting) -->
 
     <!-- Default spawning arguments -->
-    <arg name="tbName" default="asd"/>
+    <arg name="tbName" default="r10"/>
     <arg name="x" default="0.0"/>
     <arg name="y" default="0.0"/>
 
