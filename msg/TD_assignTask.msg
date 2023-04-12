@@ -1,2 +1,0 @@
-string robotName
-geometry_msgs/PoseStamped task

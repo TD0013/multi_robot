@@ -1,20 +1,17 @@
 #Namespacing as TD to avoid conflicts in params
 
-# robots can have 4 properties. Hence a robot with no properties is represented as 0000 and with all is 1111. robot with only second property is 0100
-# robotName: property1 property2, property3, property4 {without space}
-
 td: {
-  types: ["r1", "r2"],
+  types: ["r1", "r2"], # update this to add more types of robots, eg if you want to add t3, add t3 here, then add t3 below similar to r1 or r2
   r1: {
-    count: 1,
-    start: "dock_2",
-    mass: 60,
-    attribute: "1011",
-    capacity: 400,
-    energy: 40000,
-    velocity: 1,
-    BUFFER: 4,
-    isAuctioner: 1,
+    count: 1, # number of robots of this type in the environment
+    start: "dock_2",  # start position of the robot. Can be any node from the distance_params.yaml file
+    mass: 60, # define the mass. Used by the roboNode when calculating energy loss
+    attribute: "1011", # define the type of tasks that the robot can do. 1011 means the robot can do task of type 0, type 1 and type 3
+    capacity: 400, #define capacity of the robot. Can be understood as the weight a robot can carry. This is associated to the demand of a task. Sum of active demands should be less than capacity.
+    energy: 40000, # define electrical energy in the robot, which is consumed when travelling.
+    velocity: 1, # define max velocity of the robot
+    BUFFER: 4, # define the max number of tasks a robot can have in the task buffer
+    isAuctioner: 1, # define the ability of the robot to be able to become an acutioner.
   },
   r2: {
     count: 1,
