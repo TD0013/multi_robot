@@ -1,14 +1,15 @@
+# Task message type/class
 # Time is in seconds after initialization of WS
-int32 taskID
+int32 taskID #unique id
 
 int64 arrivalTime
-int64 startTime # any time after this
-int64 finishTime # any time before this
+int64 startTime #to be done any time after this
+int64 finishTime #to be done any time before this
 
-string pickup
-string destination
+string pickup #start position
+string destination #end position
 
-int64 demand
+int64 demand    # demand
 
 int32 type #depends on robot
 int32 timeconstraint #0 for soft, 1 for hard

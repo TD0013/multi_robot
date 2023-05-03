@@ -48,7 +48,7 @@ We work on the assumption that even thoough the map is open, we can only have ta
 
 The areas marked red on the map are the defined nodes. For more info on which node corresponds to which point, refer to [labels](/images/labels). 
 
-The use of using these nodes is that it reduces the computation time in our algotithm. We seperately precompute the distances between each of these nodes using A* algorithm and store them as a distance matrix in a seperate file [dist.txt](/param/dist.txt)
+The use of using these nodes is that it reduces the computation time in our algotithm. We seperately precompute the distances between each of these nodes using [A* algorithm](/src/astar.ipynb) and store them as a distance matrix in a seperate file [dist.txt](/param/dist.txt). A* is a directional path finding algorithm that which is popularly used in pre-processing distances. For more info on A* algorithm, refer to [this documentation](https://en.wikipedia.org/wiki/A*_search_algorithm).
 
 
 ### Environment Initialization
@@ -68,6 +68,13 @@ The driver code is responsible for starting the environment. It uses multiple la
 This rqt_graph shows the environment with one spawned robot in the environment. The bigger box describes a namespace in the ros environment. The smaller boxes are rostopics and the ovals are rosnodes.
 
 With this graph as reference, the working of [roboLauncher.launch](launch/TD_roboLauncher.launch) can be explained better. The robolauncher node takes the robot's name and start coordinates as arguments and launches the robot. This includes spawning, starting robot's move_base pkg for control, robot's logic controller (roboNode), and robot's auctioner node (it may or may not be used after starting).
+#### **Communication:**
+The communication between all robots happen through mainly the: 
+* "/task" topic: for initial assignment of tasks to robots in a round robin manner
+* "/auction" topic: for auctioning of a task. Multiple auctioners can simultaneously use this topic to conduct seperate auctions.
+* "/bid" topic: used by robots to bid on one task
+* "assignTask" topic: used by auctioner to assign task to bedt bidder.
+ROS master automatically uses the python code to initialize communication between nodes. The actual process that ROS does behind the scenes is more complex. Please refer to the [official ROS documentation](http://wiki.ros.org/ROS/Technical%20Overview) for more details.
 
 #### **Task Generation Node:**
 The [taskGen Node](src/taskGenerator.py) generates specified number of tasks for robots in the environment. These tasks are stored in the buffers of auction capable robots in a round robin manner, for later auctioning [These tasks are not necessarily perfomed by the robot it is assigned to. It is only given for auctioning]

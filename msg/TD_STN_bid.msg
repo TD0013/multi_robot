@@ -1,6 +1,9 @@
-string robotName
-int32 taskID
+# A standard bid message
 
-float64 penalty
-float64 time
-float64 eff
+string robotName # Name of the bidder
+int32 taskID # Task it is bidding on
+
+# Bid data
+float64 penalty #calculated penalty
+float64 time #Calculated time
+float64 eff #calculated efficiency
