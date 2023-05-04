@@ -56,8 +56,6 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
   FILES
-  TD_task.msg
-  TD_bid.msg
   TD_assignTask.msg
   TD_STN_bid.msg
   TD_STN_assignTask.msg
